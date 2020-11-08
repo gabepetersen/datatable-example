@@ -2,8 +2,8 @@
 <section>
   <h1>This is the Login Page</h1>
   <form [formGroup]="loginForm" (ngSubmit)="login(loginForm.value)">
-    <label for="user">Username</label>
-    <input type="text" id="user" name="user" placeholder="username" formControlName="user">
+    <label for="email">Username</label>
+    <input type="text" id="email" name="email" placeholder="email" formControlName="email">
     <label for="pass">Password</label>
     <input type="password" id="pass" name="pass" placeholder="password" formControlName="pass">
     <button type="submit">Submit</button>
