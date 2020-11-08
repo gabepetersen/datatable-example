@@ -1,8 +1,5 @@
 import { AppPage } from './app.po';
-<<<<<<< HEAD
 import { browser, logging } from 'protractor';
-=======
->>>>>>> e34abf7100a96a2100cf18a08f1c21ad89e265ff
 
 describe('workspace-project App', () => {
   let page: AppPage;
@@ -13,7 +10,6 @@ describe('workspace-project App', () => {
 
   it('should display welcome message', () => {
     page.navigateTo();
-<<<<<<< HEAD
     expect(page.getTitleText()).toEqual('datatable-example app is running!');
   });
 
@@ -23,8 +19,5 @@ describe('workspace-project App', () => {
     expect(logs).not.toContain(jasmine.objectContaining({
       level: logging.Level.SEVERE,
     } as logging.Entry));
-=======
-    expect(page.getParagraphText()).toEqual('Welcome to datatable-example!');
->>>>>>> e34abf7100a96a2100cf18a08f1c21ad89e265ff
   });
 });
