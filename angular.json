@@ -4,6 +4,7 @@
   "newProjectRoot": "projects",
   "projects": {
     "datatable-example": {
+<<<<<<< HEAD
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -13,6 +14,13 @@
       "root": "",
       "sourceRoot": "src",
       "prefix": "app",
+=======
+      "root": "",
+      "sourceRoot": "src",
+      "projectType": "application",
+      "prefix": "app",
+      "schematics": {},
+>>>>>>> e34abf7100a96a2100cf18a08f1c21ad89e265ff
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
@@ -21,15 +29,23 @@
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
+<<<<<<< HEAD
             "tsConfig": "tsconfig.app.json",
             "aot": true,
+=======
+            "tsConfig": "src/tsconfig.app.json",
+>>>>>>> e34abf7100a96a2100cf18a08f1c21ad89e265ff
             "assets": [
               "src/favicon.ico",
               "src/assets"
             ],
             "styles": [
+<<<<<<< HEAD
               "./node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css",
               "src/styles.scss"
+=======
+              "src/styles.css"
+>>>>>>> e34abf7100a96a2100cf18a08f1c21ad89e265ff
             ],
             "scripts": []
           },
@@ -46,6 +62,7 @@
               "sourceMap": false,
               "extractCss": true,
               "namedChunks": false,
+<<<<<<< HEAD
               "extractLicenses": true,
               "vendorChunk": false,
               "buildOptimizer": true,
@@ -61,6 +78,12 @@
                   "maximumError": "10kb"
                 }
               ]
+=======
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true
+>>>>>>> e34abf7100a96a2100cf18a08f1c21ad89e265ff
             }
           }
         },
@@ -86,6 +109,7 @@
           "options": {
             "main": "src/test.ts",
             "polyfills": "src/polyfills.ts",
+<<<<<<< HEAD
             "tsConfig": "tsconfig.spec.json",
             "karmaConfig": "karma.conf.js",
             "assets": [
@@ -97,21 +121,48 @@
               "src/styles.scss"
             ],
             "scripts": []
+=======
+            "tsConfig": "src/tsconfig.spec.json",
+            "karmaConfig": "src/karma.conf.js",
+            "styles": [
+              "src/styles.css"
+            ],
+            "scripts": [],
+            "assets": [
+              "src/favicon.ico",
+              "src/assets"
+            ]
+>>>>>>> e34abf7100a96a2100cf18a08f1c21ad89e265ff
           }
         },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
+<<<<<<< HEAD
               "tsconfig.app.json",
               "tsconfig.spec.json",
               "e2e/tsconfig.json"
+=======
+              "src/tsconfig.app.json",
+              "src/tsconfig.spec.json"
+>>>>>>> e34abf7100a96a2100cf18a08f1c21ad89e265ff
             ],
             "exclude": [
               "**/node_modules/**"
             ]
           }
+<<<<<<< HEAD
         },
+=======
+        }
+      }
+    },
+    "datatable-example-e2e": {
+      "root": "e2e/",
+      "projectType": "application",
+      "architect": {
+>>>>>>> e34abf7100a96a2100cf18a08f1c21ad89e265ff
         "e2e": {
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
@@ -124,15 +175,30 @@
             }
           }
         },
+<<<<<<< HEAD
         "deploy": {
           "builder": "@angular/fire:deploy",
           "options": {}
+=======
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": "e2e/tsconfig.e2e.json",
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+>>>>>>> e34abf7100a96a2100cf18a08f1c21ad89e265ff
         }
       }
     }
   },
+<<<<<<< HEAD
   "defaultProject": "datatable-example",
   "cli": {
     "analytics": false
   }
+=======
+  "defaultProject": "datatable-example"
+>>>>>>> e34abf7100a96a2100cf18a08f1c21ad89e265ff
 }
