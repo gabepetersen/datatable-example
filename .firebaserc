@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "datatable-example": {
+      "hosting": {
+        "datatable-example": [
+          "datatable-example"
+        ]
+      }
+    }
+  }
+}
