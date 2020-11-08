@@ -1,9 +1,14 @@
+// Angular Imports
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms'
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+// App Imports
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+// Misc Page Components
 import { LoginComponent } from './pages/login/login.component';
 import { EnterDataComponent } from './pages/enter-data/enter-data.component';
 import { FirestoreTableComponent } from './pages/firestore-table/firestore-table.component';
@@ -24,7 +29,9 @@ import { NavbarComponent } from './components/navbar/navbar.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
