@@ -1,0 +1,26 @@
+
+textarea { 
+  width: 70vw;
+  min-height: 200px;
+}
+th, td { 
+  padding: 0.2em 1em;
+}
+table {
+  width: 100%;
+}
+.uploadData {
+  padding: 20px;
+}
+form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  & * {
+    padding: 1em;
+  }
+  & [type="submit"] {
+    margin: 1em 0;
+  }
+}

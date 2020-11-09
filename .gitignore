@@ -3,6 +3,8 @@
 # ignore all the important keys
 /src/environments/firebase.config.ts
 
+/.firebase
+
 # compiled output
 /dist
 /tmp

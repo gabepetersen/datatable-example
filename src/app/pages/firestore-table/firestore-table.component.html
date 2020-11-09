@@ -1,1 +1,25 @@
-<p>firestore-table works!</p>
+<section class="uploadData">
+  <h2>Insert Data</h2>
+  <p><em>Note: Data has to be entered as an array of objects, and all objects must have the same, exact, first-level keys</em></p>
+  <form (ngSubmit)="submit()">
+    <textarea id="jsondata" name="jsondata" placeholder="enter json array here" [formControl]="jsondata"></textarea>
+    <button type="submit">Submit</button>
+  </form>
+  <p class="errorText">{{errorText}}</p>
+</section>
+<section>
+  <mat-paginator [length]="100" [pageSize]="10" [pageSizeOptions]="[10,25,50,100]">  </mat-paginator>
+  <table mat-table #table [dataSource]="dataSource" matSort matSortDirection="asc">
+
+    <ng-container *ngFor="let columnName of dataColumns; let colIndex = index" matColumnDef="{{columnName}}">
+      <th mat-header-cell mat-sort-header *matHeaderCellDef>{{columnName}}</th>
+      <td mat-cell *matCellDef="let element"> 
+        {{element[columnName]}}
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="dataColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: dataColumns;"></tr>
+  </table>
+</section>
+

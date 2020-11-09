@@ -3,7 +3,6 @@ import { Routes, RouterModule } from '@angular/router';
 import { AngularFireAuthGuard } from '@angular/fire/auth-guard';
 
 // All of my pages
-import { EnterDataComponent } from './pages/enter-data/enter-data.component';
 import { FirestoreTableComponent } from './pages/firestore-table/firestore-table.component';
 import { LoginComponent } from './pages/login/login.component';
 import { Page404Component } from './pages/page404/page404.component';
@@ -15,11 +14,6 @@ const routes: Routes = [
   {
     path: 'login',
     component: LoginComponent
-  },
-  {
-    path: 'enter',
-    component: EnterDataComponent,
-    canActivate: [AngularFireAuthGuard]
   },
   {
     path: 'realtime',
