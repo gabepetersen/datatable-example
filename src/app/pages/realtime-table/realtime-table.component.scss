@@ -1,0 +1,49 @@
+
+section {
+  overflow-x: scroll;
+}
+textarea { 
+  width: 70vw;
+  min-height: 200px;
+}
+th, td { 
+  padding: 0.1em 0.5em !important;
+  max-width: 100px;
+  min-width: 30px;
+  text-overflow: ellipsis !important;
+  white-space: wrap !important;
+  overflow-x: hidden !important;
+  overflow-y: visible !important;
+}
+table {
+  width: 100%;
+  overflow-x: scroll !important;
+}
+.uploadData {
+  padding: 20px;
+}
+form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  & * {
+    padding: 1em;
+  }
+  & [type="submit"] {
+    margin: 1em 0;
+  }
+}
+#toolbar {
+  & * {
+    padding: 1em;
+    margin: 0 1em;
+  }
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  & mat-paginator {
+    flex: 3;
+  }
+}

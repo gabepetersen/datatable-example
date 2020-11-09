@@ -1,1 +1,34 @@
-<p>realtime-table works!</p>
+<section class="uploadData">
+  <h1>RealtimeDB: Insert Data</h1>
+  <p><em>Note: Data has to be entered as an array of objects, and all objects must have the same, exact, first-level keys</em></p>
+  <p><strong>Please wait until all data is loaded into the table before you refresh the page - it might take a while</strong></p>
+  <form (ngSubmit)="submit()">
+    <textarea id="jsondata" name="jsondata" placeholder="enter json array here" [formControl]="jsondata"></textarea>
+    <button type="submit">Submit</button>
+  </form>
+  <p class="errorText">{{errorText}}</p>
+</section>
+
+<section id="toolbar">
+  <input type="text" (keyup)="applyFilter($event.target.value)" placeholder="Filter...">
+  <button id="deleteData" (click)="handleDelete()">Delete Data</button>
+  <mat-paginator [length]="100" [pageSize]="10" [pageSizeOptions]="[10,25,50,100]">  </mat-paginator>
+</section>
+
+<section>
+  
+  <table mat-table #table [dataSource]="dataSource" matSort matSortDirection="asc">
+
+    <ng-container *ngFor="let columnName of dataColumns; let colIndex = index" matColumnDef="{{columnName}}">
+      <th mat-header-cell mat-sort-header *matHeaderCellDef>{{columnName}}</th>
+      <td mat-cell *matCellDef="let element"> 
+        {{element[columnName]}}
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="dataColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: dataColumns;"></tr>
+  </table>
+</section>
+
+

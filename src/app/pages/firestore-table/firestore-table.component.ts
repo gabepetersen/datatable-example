@@ -13,8 +13,6 @@ import { MatTableDataSource } from '@angular/material/table';
   styleUrls: ['./firestore-table.component.scss']
 })
 export class FirestoreTableComponent implements OnInit {
-  public preDataSource: Array<Object>;
-  public currentIdList: Array<String>;
   public dataSource: MatTableDataSource<any>;
   public dataColumns: Array<String>;
   public errorText: String;
@@ -77,9 +75,8 @@ export class FirestoreTableComponent implements OnInit {
           console.log(match);
           // if the entry is valid 
           if (match) {
-            // put in 
-            var res = await tableCollection.add(item);
-            console.log("file result: ", res);
+            // put in firestore
+            await tableCollection.add(item);
           }
         });
       }
@@ -93,27 +90,32 @@ export class FirestoreTableComponent implements OnInit {
    * updateTableData refreshes the UI table with whatever is currently in the firestore table collection
    */
   public updateTableData() {
-    // declare collection
-    const tableCollection = this.firestore.collection<any>('table');
-    // get the entire collection
-    tableCollection.valueChanges().subscribe(dataArray => {
-      this.dataSource.data = dataArray.map((item) => {
-        var newItem = {};
-        var keys = Object.keys(item);
-        keys.forEach((key) => {
-          // if the key-value is an array
-          if (Array.isArray(item[key])) {
-            // replace so table can read
-            newItem[key] = item[key].length;
-          } else {
-            newItem[key] = item[key];
-          }
+    try {
+      // declare collection
+      const tableCollection = this.firestore.collection<any>('table');
+      // get the entire collection
+      tableCollection.valueChanges().subscribe(dataArray => {
+        this.dataSource.data = dataArray.map((item) => {
+          var newItem = {};
+          var keys = Object.keys(item);
+          keys.forEach((key) => {
+            // if the key-value is an array
+            if (Array.isArray(item[key])) {
+              // replace so table can read
+              newItem[key] = item[key].length;
+            } else {
+              newItem[key] = item[key];
+            }
+          });
+          return newItem;
         });
-        return newItem;
+        // set the data columns for the ui
+        this.setDataColumns();
       });
-      // set the data columns for the ui
-      this.setDataColumns();
-    });
+    } catch (err) {
+      console.error(err);
+      this.errorText = err;
+    }
   }
 
   /**
