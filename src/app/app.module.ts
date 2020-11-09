@@ -16,7 +16,9 @@ var angularFireMisc = [AngularFirestoreModule, AngularFireDatabaseModule, Angula
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
-var angularMatMisc = [MatTableModule, MatPaginatorModule, MatSortModule];
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatDialogModule } from '@angular/material/dialog'
+var angularMatMisc = [MatTableModule, MatPaginatorModule, MatSortModule, MatProgressSpinnerModule, MatDialogModule];
 
 // App Imports
 import { AppRoutingModule } from './app-routing.module';
@@ -28,15 +30,18 @@ import { LoginComponent } from './pages/login/login.component';
 import { FirestoreTableComponent } from './pages/firestore-table/firestore-table.component';
 import { RealtimeTableComponent } from './pages/realtime-table/realtime-table.component';
 import { Page404Component } from './pages/page404/page404.component';
+var pageComponents = [LoginComponent, FirestoreTableComponent, RealtimeTableComponent, Page404Component ];
+
+// Piece Components
 import { NavbarComponent } from './components/navbar/navbar.component';
-var pageComponents = [LoginComponent, FirestoreTableComponent, RealtimeTableComponent, Page404Component, NavbarComponent];
-
-
+import { LoadingComponent } from './components/loading/loading.component';
+var pieceComponents = [NavbarComponent, LoadingComponent];
 
 @NgModule({
   declarations: [
     AppComponent,
-    ...pageComponents
+    ...pageComponents,
+    ...pieceComponents
   ],
   imports: [
     BrowserModule,

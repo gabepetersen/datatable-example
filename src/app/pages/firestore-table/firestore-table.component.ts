@@ -36,7 +36,7 @@ export class FirestoreTableComponent implements OnInit {
   }
 
   constructor(
-    private firestore: AngularFirestore
+    private firestore: AngularFirestore,
   ) {}
 
   async ngOnInit() {
@@ -55,6 +55,7 @@ export class FirestoreTableComponent implements OnInit {
     // await this.deleteCollection();
     await this.uploadData();
     this.updateTableData();
+    this.jsondata.reset();
   }
 
   /**
@@ -125,10 +126,7 @@ export class FirestoreTableComponent implements OnInit {
       this.dataColumns = this.dataColumns.sort((a, b) => {
         return (a < b ? -1 : 1);
       });
-    } else {
-
-    }
-    
+    } 
   }
 
   /**
@@ -145,11 +143,24 @@ export class FirestoreTableComponent implements OnInit {
   /**
    * handleDelete deletes the collection from UI button press
    */
-  public async handleDelete() {
+  public handleDelete() {
     console.log('Deleting...');
-    await this.deleteCollection();
-    this.updateTableData();
-    console.log("Collection Deleted!");
+    this.deleteCollection().then(() => {
+      // update the table data
+      this.updateTableData();
+      console.log("Collection Deleted!");
+    }).catch((err) => {
+      console.error(err);
+      this.errorText = err;
+    });
+  }
+
+  /**
+   * applies a temporary filter to the users
+   * @param filterValue 
+   */
+  public applyFilter(filterValue: string) {
+    this.dataSource.filter = filterValue.toLowerCase();
   }
 
 }
