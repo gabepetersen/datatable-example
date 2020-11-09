@@ -5,9 +5,15 @@ textarea {
 }
 th, td { 
   padding: 0.2em 1em;
+  max-width: 100px;
+  text-overflow: ellipsis !important;
+  white-space: wrap !important;
+  overflow-x: hidden !important;
+  overflow-y: visible !important;
 }
 table {
   width: 100%;
+  overflow-x: scroll !important;
 }
 .uploadData {
   padding: 20px;
@@ -22,5 +28,18 @@ form {
   }
   & [type="submit"] {
     margin: 1em 0;
+  }
+}
+#toolbar {
+  & * {
+    padding: 1em;
+    margin: 0 1em;
+  }
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  & mat-paginator {
+    flex: 3;
   }
 }

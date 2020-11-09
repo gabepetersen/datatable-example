@@ -7,8 +7,15 @@
   </form>
   <p class="errorText">{{errorText}}</p>
 </section>
-<section>
+
+<section id="toolbar">
+  <input type="text" placeholder="Filter...">
+  <button id="deleteData" (click)="handleDelete()">Delete Data</button>
   <mat-paginator [length]="100" [pageSize]="10" [pageSizeOptions]="[10,25,50,100]">  </mat-paginator>
+</section>
+
+<section>
+  
   <table mat-table #table [dataSource]="dataSource" matSort matSortDirection="asc">
 
     <ng-container *ngFor="let columnName of dataColumns; let colIndex = index" matColumnDef="{{columnName}}">

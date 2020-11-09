@@ -42,10 +42,9 @@ export class FirestoreTableComponent implements OnInit {
   async ngOnInit() {
     this.dataSource = new MatTableDataSource();
     
-    await this.updateTableData();
+    this.updateTableData();
 
     this.dataSource.sort = this.sort;
-
     this.errorText = '';
   }
 
@@ -53,52 +52,50 @@ export class FirestoreTableComponent implements OnInit {
    * submit submits the json array to the database
    */
   public async submit() {
-    await this.deleteCollection();
+    // await this.deleteCollection();
     await this.uploadData();
     this.updateTableData();
   }
 
-  public uploadData() {
-    return new Promise((resolve, reject) => {
-      try {
-        // get data from form control
-        var jsonArray = JSON.parse(this.jsondata.value);
-        if (jsonArray[0]) {
-          // declare collection
-          const tableCollection = this.firestore.collection<any>('table');
-          var matchKeys = Object.keys(jsonArray[0])
+  /**
+   * uploadData() takes the data array from the textarea and tries to upload the entries into the firestore table collection
+   */
+  public async uploadData() {
+    try {
+      // get data from form control
+      var jsonArray = JSON.parse(this.jsondata.value);
+      if (jsonArray[0]) {
+        // declare collection
+        const tableCollection = this.firestore.collection<any>('table');
+        var matchKeys = Object.keys(jsonArray[0])
 
-          // for each object in array
-          jsonArray.forEach((item: Object) => {
-            // check if it is valid to the first object
-            const match = matchKeys.every(key => item.hasOwnProperty(key));
-            console.log(match);
-            // if the entry is valid 
-            if (match) {
-              // put in 
-              tableCollection.add(item).catch((err) => {
-                console.error(err);
-                reject(err)
-                this.errorText = err;
-                return;
-              });
-            }
-          });
-          resolve();
-        }
-      } catch (err) {
-        console.error(err);
-        this.errorText = err;
-        reject(err);
+        // for each object in array
+        jsonArray.forEach( async (item: Object) => {
+          // check if it is valid to the first object
+          const match = matchKeys.every(key => item.hasOwnProperty(key));
+          console.log(match);
+          // if the entry is valid 
+          if (match) {
+            // put in 
+            var res = await tableCollection.add(item);
+            console.log("file result: ", res);
+          }
+        });
       }
-    });
+    } catch (err) {
+      console.error(err);
+      this.errorText = err;
+    }
   }
 
-  public async updateTableData() {
+  /**
+   * updateTableData refreshes the UI table with whatever is currently in the firestore table collection
+   */
+  public updateTableData() {
     // declare collection
     const tableCollection = this.firestore.collection<any>('table');
+    // get the entire collection
     tableCollection.valueChanges().subscribe(dataArray => {
-      console.log(dataArray);
       this.dataSource.data = dataArray.map((item) => {
         var newItem = {};
         var keys = Object.keys(item);
@@ -113,18 +110,46 @@ export class FirestoreTableComponent implements OnInit {
         });
         return newItem;
       });
+      // set the data columns for the ui
+      this.setDataColumns();
     });
-    console.log(this.dataSource.data);
-    this.dataColumns = Object.keys(this.dataSource.data[0]);
   }
 
+  /**
+   * setDataColumns sets the datacolumns and sorts them alphabetically
+   */
+  public setDataColumns() {
+    if (this.dataSource.data[0]) {
+      this.dataColumns = Object.keys(this.dataSource.data[0]);
+      // sort the data columns alphabetically
+      this.dataColumns = this.dataColumns.sort((a, b) => {
+        return (a < b ? -1 : 1);
+      });
+    } else {
+
+    }
+    
+  }
+
+  /**
+   * deleteCollection deletes all of the firestore collection under 'table'
+   */
   public async deleteCollection() {
     this.firestore.collection<any>('table').get().subscribe((res) => {
-      res.docs.forEach((doc) => {
-        doc.ref.delete();
+      res.docs.forEach( async (doc) => {
+        await doc.ref.delete();
       })
     });
-    console.log('delete complete');
+  }
+
+  /**
+   * handleDelete deletes the collection from UI button press
+   */
+  public async handleDelete() {
+    console.log('Deleting...');
+    await this.deleteCollection();
+    this.updateTableData();
+    console.log("Collection Deleted!");
   }
 
 }
