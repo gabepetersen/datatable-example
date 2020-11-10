@@ -1,3 +1,26 @@
 <nav>
-  
+  <ul>
+    <li id="title">
+      Firebase Database Examples
+    </li>
+    <li>
+      <a *ngIf="activeUser" (click)="logout()">Logout</a>
+      <a *ngIf="!activeUser" routerLink="/login" routerLinkActive="active">Login</a>
+    </li>
+    <li class="innerList"  *ngIf="activeUser"> 
+      <a>Tables</a>
+      <ul>
+        <li>
+          <a routerLink="/realtime">
+            RealtimeDB Table 
+          </a>
+        </li>
+        <li>
+          <a routerLink="/firestore">
+            Firestore Table
+          </a>        
+        </li>
+      </ul>
+    </li>
+  </ul>
 </nav>

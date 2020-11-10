@@ -51,7 +51,7 @@ export class LoginComponent implements OnInit {
       // login
       this.authService.login(loginData.email, loginData.pass).then((res) => {
         if (res.user) {
-          this.router.navigate(['/enter']);
+          this.router.navigate(['/firestore']);
         }
       }).catch((error) => {
         console.log(error);

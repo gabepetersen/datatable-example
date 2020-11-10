@@ -1,0 +1,54 @@
+$navbar-background-color: #c2c2c2;
+$navbar-color: #222222;
+$navbar-hover: #b4b2b2;
+
+nav {
+  background-color: $navbar-background-color;
+  width: 100vw;
+  color: $navbar-color;
+  position: absolute;
+}
+ul {
+  margin: 0 auto;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-around;
+  flex-direction: row;
+  list-style-type: none;
+  & li {
+    margin: 0 0.8em;
+  }
+  & li a { 
+    color: $navbar-color;
+    text-decoration: none;
+    text-align: center;
+    display: inline-block;
+    padding: 2em 2em; 
+    min-width: 70px;
+    &:hover {
+      background-color: $navbar-hover;
+    }
+  }
+}
+.innerList {
+  position: relative;
+  & ul li {
+    background-color: $navbar-background-color;
+    margin: 0 auto !important;
+  }
+  & ul {
+    max-width: auto;
+    max-height: auto;
+    position: absolute;  
+    display: none;
+  }
+  &:hover ul {
+    display: block; 
+  }
+}
+#title {
+  flex: 3;
+  font-size: 30px;
+}
