@@ -82,8 +82,7 @@ export class RealtimeTableComponent implements OnInit {
           // if the entry is valid 
           if (match) {
             // put in database
-            var res = await this.tableRef.push(item);
-            console.log("file result: ", res);
+            await this.tableRef.push(item);
           }
         });
       }

@@ -6,6 +6,9 @@ form {
   & * {
     padding: 1em;
   }
+  & input {
+    margin: 1.5em auto;
+  }
   & [type="submit"] {
     margin: 1em 0;
   }

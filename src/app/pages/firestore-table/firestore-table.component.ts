@@ -39,7 +39,7 @@ export class FirestoreTableComponent implements OnInit {
 
   async ngOnInit() {
     this.dataSource = new MatTableDataSource();
-    
+    // update tabledata if theres anything from the database
     this.updateTableData();
 
     this.dataSource.sort = this.sort;

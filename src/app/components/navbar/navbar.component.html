@@ -7,7 +7,7 @@
       <a *ngIf="activeUser" (click)="logout()">Logout</a>
       <a *ngIf="!activeUser" routerLink="/login" routerLinkActive="active">Login</a>
     </li>
-    <li class="innerList"  *ngIf="activeUser"> 
+    <li class="innerList" *ngIf="activeUser"> 
       <a>Tables</a>
       <ul>
         <li>
